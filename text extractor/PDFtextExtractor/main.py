@@ -1,9 +1,9 @@
 from PyPDF2 import PdfReader
-# from sentence_transformers import SentenceTransformer
-#
-# # Initialize the SentenceTransformer model
-# model = SentenceTransformer('bert-base-nli-mean-tokens')
 
+# Load pre-trained Word2Vec model
+# Note: You need to download a pre-trained Word2Vec model or train one yourself.
+# For demonstration, let's assume you have a model named 'word2vec_model.model'
+model = Word2Vec.load('word2vec_model.model')
 
 def extract_text_from_pdf(pdf_path, output_file):
     """
@@ -53,19 +53,6 @@ def chunk_text(text, max_chunk_size=500):
 
     return chunks
 
-# def embed_text(text):
-#     """
-#     Embed text into vector representation using SentenceTransformer.
-#
-#     Parameters:
-#     - text (str): The text to be embedded.
-#
-#     Returns:
-#     - numpy.ndarray: Vector representation of the text.
-#     """
-#     # Generate embeddings
-#     embeddings = model.encode([text])
-#     return embeddings[0]
 
 # Example usage:
 pdf_path = 'Greek_God_Pantheon.pdf'  # Replace with your PDF file path
@@ -88,9 +75,3 @@ text_chunks = chunk_text(extracted_text)
 print(f"Number of chunks: {len(text_chunks)}")
 print("Sample chunk:")
 print(text_chunks[1])
-
-embedded_text_chunks = [embed_text(chunk) for chunk in text_chunks]
-
-# Print the embeddings for the first chunk as a sample
-print("Embedding for the first chunk:")
-print(embedded_text_chunks[0])
